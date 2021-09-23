@@ -3,10 +3,12 @@ package guru.springframework.restmvc.services;
 import guru.springframework.restmvc.api.v1.mapper.CategoryMapper;
 import guru.springframework.restmvc.api.v1.model.CategoryDTO;
 import guru.springframework.restmvc.repositories.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
