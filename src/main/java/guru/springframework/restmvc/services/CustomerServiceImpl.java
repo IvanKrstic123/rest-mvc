@@ -2,6 +2,7 @@ package guru.springframework.restmvc.services;
 
 import guru.springframework.restmvc.api.v1.mapper.CustomerMapper;
 import guru.springframework.restmvc.api.v1.model.CustomerDTO;
+import guru.springframework.restmvc.domain.Customer;
 import guru.springframework.restmvc.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +37,21 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDTO)
                 .get();
+    }
+
+    @Override
+    public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
+
+        Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+
+        Customer savedCustomer = customerRepository.save(customer);
+
+        CustomerDTO returnDto = customerMapper.customerToCustomerDTO(savedCustomer);
+
+        returnDto.setCustomerUrl("/api/v1/customers/" + savedCustomer.getId());
+
+        return returnDto;
+
+
     }
 }
