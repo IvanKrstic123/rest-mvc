@@ -3,6 +3,7 @@ package guru.springframework.restmvc.services;
 import guru.springframework.restmvc.api.v1.mapper.CustomerMapper;
 import guru.springframework.restmvc.api.v1.model.CustomerDTO;
 import guru.springframework.restmvc.bootstrap.Bootstrap;
+import guru.springframework.restmvc.controllers.v1.CustomerController;
 import guru.springframework.restmvc.domain.Customer;
 import guru.springframework.restmvc.repositories.CategoryRepository;
 import guru.springframework.restmvc.repositories.CustomerRepository;
@@ -17,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 public class CustomerServiceImplIT {
 
-    public static final long ID = 1L;
     public static final String FIRSTNAME = "Fred";
     public static final String LASTNAME = "Mayers";
 
@@ -51,7 +51,7 @@ public class CustomerServiceImplIT {
         assertEquals(existingCustomer.getId(), returnedDTO.getId());
         assertEquals(FIRSTNAME, returnedDTO.getFirstname());
         assertEquals(existingCustomer.getLastname(), returnedDTO.getLastname());
-        assertEquals("/api/v1/customers/" + existingCustomer.getId(), returnedDTO.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + existingCustomer.getId(), returnedDTO.getCustomerUrl());
 
     }
 
@@ -69,6 +69,6 @@ public class CustomerServiceImplIT {
         assertEquals(existingCustomer.getId(), returnedDTO.getId());
         assertEquals(LASTNAME, returnedDTO.getLastname());
         assertEquals(existingCustomer.getLastname(), returnedDTO.getLastname());
-        assertEquals("/api/v1/customers/" + existingCustomer.getId(), returnedDTO.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + existingCustomer.getId(), returnedDTO.getCustomerUrl());
     }
 }

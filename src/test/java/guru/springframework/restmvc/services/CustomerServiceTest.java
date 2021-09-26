@@ -2,6 +2,7 @@ package guru.springframework.restmvc.services;
 
 import guru.springframework.restmvc.api.v1.mapper.CustomerMapper;
 import guru.springframework.restmvc.api.v1.model.CustomerDTO;
+import guru.springframework.restmvc.controllers.v1.CustomerController;
 import guru.springframework.restmvc.domain.Customer;
 import guru.springframework.restmvc.repositories.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -91,7 +92,7 @@ class CustomerServiceTest {
         assertEquals(ID, newCustomer.getId());
         assertEquals(FIRST_NAME, newCustomer.getFirstname());
         assertEquals(LAST_NAME, newCustomer.getLastname());
-        assertEquals("/api/v1/customers/1", newCustomer.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + "1", newCustomer.getCustomerUrl());
     }
 
     @Test
@@ -115,7 +116,7 @@ class CustomerServiceTest {
         assertEquals(ID, returnedDTO.getId());
         assertEquals(FIRST_NAME, returnedDTO.getFirstname());
         assertEquals(LAST_NAME, returnedDTO.getLastname());
-        assertEquals("/api/v1/customers/1", returnedDTO.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + "1", returnedDTO.getCustomerUrl());
     }
 
     @Test
@@ -140,7 +141,7 @@ class CustomerServiceTest {
         assertEquals(ID, returnedDTO.getId());
         assertEquals(FIRST_NAME, returnedDTO.getFirstname());
         assertEquals(LAST_NAME, returnedDTO.getLastname());
-        assertEquals("/api/v1/customers/1", returnedDTO.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + "1", returnedDTO.getCustomerUrl());
     }
 
     @Test

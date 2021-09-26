@@ -67,7 +67,7 @@ class CategoryControllerTest {
 
         when(categoryService.getAllCategories()).thenReturn(Arrays.asList(categoryDTO, categoryDTO1));
 
-        mockMvc.perform(get("/api/v1/categories/")
+        mockMvc.perform(get(CategoryController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.categories", hasSize(2))); // $ stands for root
@@ -82,7 +82,7 @@ class CategoryControllerTest {
 
         when(categoryService.getCategoryByName(anyString())).thenReturn(categoryDTO);
 
-        mockMvc.perform(get("/api/v1/categories/Ivan")
+        mockMvc.perform(get(CategoryController.BASE_URL + "Ivan")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo(FRUITS)));

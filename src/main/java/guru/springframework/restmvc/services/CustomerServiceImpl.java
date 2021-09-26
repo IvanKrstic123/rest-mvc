@@ -2,6 +2,7 @@ package guru.springframework.restmvc.services;
 
 import guru.springframework.restmvc.api.v1.mapper.CustomerMapper;
 import guru.springframework.restmvc.api.v1.model.CustomerDTO;
+import guru.springframework.restmvc.controllers.v1.CustomerController;
 import guru.springframework.restmvc.domain.Customer;
 import guru.springframework.restmvc.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomerUrl("/api/v1/customers/" + customer.getId());
+                    customerDTO.setCustomerUrl(CustomerController.BASE_URL + customer.getId());
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
@@ -37,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id)
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomerUrl("/api/v1/customers/" + customer.getId());
+                    customerDTO.setCustomerUrl(CustomerController.BASE_URL + customer.getId());
                     return customerDTO;
                 })
                 .get();
@@ -80,7 +81,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(savedCustomer);
 
-        returnDTO.setCustomerUrl("/api/v1/customers/" + savedCustomer.getId());
+        returnDTO.setCustomerUrl(CustomerController.BASE_URL + savedCustomer.getId());
         return returnDTO;
     }
 }
