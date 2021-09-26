@@ -1,7 +1,9 @@
 package guru.springframework.restmvc.controllers.v1;
 
 import guru.springframework.restmvc.api.v1.model.CustomerDTO;
+import guru.springframework.restmvc.controllers.RestResponseEntityExceptionHandler;
 import guru.springframework.restmvc.services.CustomerService;
+import guru.springframework.restmvc.services.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import javax.print.attribute.standard.Media;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,6 +50,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     void setUp() {
         mockMvc = MockMvcBuilders
                 .standaloneSetup(customerController)
+                .setControllerAdvice(new RestResponseEntityExceptionHandler())
                 .build();
     }
 
@@ -70,11 +74,10 @@ class CustomerControllerTest extends AbstractRestControllerTest{
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customers", hasSize(2)));
-
     }
 
     @Test
-    void testCustomerById() throws Exception {
+    void testGetCustomerById() throws Exception {
         CustomerDTO customer = new CustomerDTO();
         customer.setId(ID);
         customer.setFirstname(FIRST_NAME);
@@ -86,7 +89,16 @@ class CustomerControllerTest extends AbstractRestControllerTest{
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)));
+    }
 
+    @Test
+    void testGetCustomerByIdNotFound() throws Exception {
+
+        when(customerService.getCustomerById(anyLong())).thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get(CustomerController.BASE_URL + "1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -156,4 +168,6 @@ class CustomerControllerTest extends AbstractRestControllerTest{
 
         verify(customerService).deleteCustomerById(anyLong());
     }
+
+
 }
