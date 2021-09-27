@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import javax.print.attribute.standard.Media;
 import java.util.Arrays;
 import java.util.List;
 
@@ -116,7 +115,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
-                .andExpect(jsonPath("$.customer_url ", equalTo("/api/v1/customers/2")));
+                .andExpect(jsonPath("$.customer_url ", equalTo(CustomerController.BASE_URL + "2")));
 
     }
 

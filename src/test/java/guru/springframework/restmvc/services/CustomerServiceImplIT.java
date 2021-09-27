@@ -7,6 +7,7 @@ import guru.springframework.restmvc.controllers.v1.CustomerController;
 import guru.springframework.restmvc.domain.Customer;
 import guru.springframework.restmvc.repositories.CategoryRepository;
 import guru.springframework.restmvc.repositories.CustomerRepository;
+import guru.springframework.restmvc.repositories.VendorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,15 @@ public class CustomerServiceImplIT {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    VendorRepository vendorRepository;
+
     private CustomerService customerService;
 
 
     @BeforeEach
     void setUp() throws Exception {
-        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository);
+        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository, vendorRepository);
         bootstrap.run(); // load data
 
         customerService = new CustomerServiceImpl(customerRepository, CustomerMapper.INSTANCE);

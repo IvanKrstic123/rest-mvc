@@ -4,8 +4,6 @@ import guru.springframework.restmvc.api.v1.model.CustomerDTO;
 import guru.springframework.restmvc.api.v1.model.CustomerListDTO;
 import guru.springframework.restmvc.services.CustomerService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,7 +39,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDTO updateCustomer(@PathVariable Long id,
-                                                      @RequestBody CustomerDTO customerDTO) {
+                                      @RequestBody CustomerDTO customerDTO) {
         return customerService.updateCustomer(id, customerDTO);
     }
 
