@@ -30,10 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 class CustomerControllerTest extends AbstractRestControllerTest{
 
-    public static final long ID = 2L;
     public static final String FIRST_NAME = "Ivan";
     public static final String LAST_NAME = "Krstic";
-    public static final long ID1 = 3L;
     public static final String FIRST_NAME1 = "Stojan";
     public static final String LAST_NAME1 = "Novakovic";
 
@@ -56,12 +54,10 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     @Test
     void testListCustomers() throws Exception {
         CustomerDTO customer = new CustomerDTO();
-        customer.setId(ID);
         customer.setFirstname(FIRST_NAME);
         customer.setLastname(LAST_NAME);
 
         CustomerDTO customer1 = new CustomerDTO();
-        customer1.setId(ID1);
         customer1.setFirstname(FIRST_NAME1);
         customer1.setLastname(LAST_NAME1);
 
@@ -78,7 +74,6 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     @Test
     void testGetCustomerById() throws Exception {
         CustomerDTO customer = new CustomerDTO();
-        customer.setId(ID);
         customer.setFirstname(FIRST_NAME);
         customer.setLastname(LAST_NAME);
 
@@ -103,7 +98,6 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     @Test
     void createNewCustomer() throws Exception {
         CustomerDTO customer = new CustomerDTO();
-        customer.setId(ID);
         customer.setFirstname(FIRST_NAME);
         customer.setLastname(LAST_NAME);
         customer.setCustomerUrl(CustomerController.BASE_URL + "2");
@@ -122,7 +116,6 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     @Test
     void updateCustomerByDTO() throws Exception {
         CustomerDTO customer = new CustomerDTO();
-        customer.setId(ID);
         customer.setFirstname(FIRST_NAME);
         customer.setLastname(LAST_NAME);
         customer.setCustomerUrl(CustomerController.BASE_URL + "2");
@@ -142,7 +135,6 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     void testPatchCustomer() throws Exception {
         //given
         CustomerDTO returnDTO = new CustomerDTO();
-        returnDTO.setId(ID);
         returnDTO.setFirstname(FIRST_NAME);
         returnDTO.setLastname(LAST_NAME);
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "2");

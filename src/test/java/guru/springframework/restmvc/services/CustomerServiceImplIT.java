@@ -52,7 +52,7 @@ public class CustomerServiceImplIT {
 
         CustomerDTO returnedDTO = customerService.patchCustomer(existingCustomer.getId(), requestDTO);
 
-        assertEquals(existingCustomer.getId(), returnedDTO.getId());
+        assertNotNull(returnedDTO);
         assertEquals(FIRSTNAME, returnedDTO.getFirstname());
         assertEquals(existingCustomer.getLastname(), returnedDTO.getLastname());
         assertEquals(CustomerController.BASE_URL + existingCustomer.getId(), returnedDTO.getCustomerUrl());
@@ -70,7 +70,7 @@ public class CustomerServiceImplIT {
         CustomerDTO returnedDTO = customerService.patchCustomer(existingCustomer.getId(), requestDTO);
 
         assertNotNull(existingCustomer);
-        assertEquals(existingCustomer.getId(), returnedDTO.getId());
+        assertNotNull(returnedDTO);
         assertEquals(LASTNAME, returnedDTO.getLastname());
         assertEquals(existingCustomer.getLastname(), returnedDTO.getLastname());
         assertEquals(CustomerController.BASE_URL + existingCustomer.getId(), returnedDTO.getCustomerUrl());

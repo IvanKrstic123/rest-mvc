@@ -33,7 +33,6 @@ class CustomerMapperTest {
 
         //then
         assertNotNull(customerDTO);
-        assertEquals(ID, customerDTO.getId());
         assertEquals(FIRST_NAME, customerDTO.getFirstname());
         assertEquals(LAST_NAME, customer.getLastname());
 

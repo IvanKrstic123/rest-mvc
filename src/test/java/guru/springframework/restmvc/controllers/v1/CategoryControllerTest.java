@@ -31,8 +31,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 class CategoryControllerTest {
 
-    public static final long ID = 1L;
-    public static final long ID1 = 2L;
     public static final String FRUITS = "Fruits";
     public static final String JUICES = "Juices";
 
@@ -59,16 +57,14 @@ class CategoryControllerTest {
     void testListCategories() throws Exception {
 
         CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(ID);
         categoryDTO.setName(FRUITS);
 
         CategoryDTO categoryDTO1 = new CategoryDTO();
-        categoryDTO1.setId(ID1);
         categoryDTO1.setName(JUICES);
 
         List<CategoryDTO> categoryDTOList = Arrays.asList(categoryDTO, categoryDTO1);
 
-        when(categoryService.getAllCategories()).thenReturn(Arrays.asList(categoryDTO, categoryDTO1));
+        when(categoryService.getAllCategories()).thenReturn(categoryDTOList);
 
         mockMvc.perform(get(CategoryController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -80,7 +76,6 @@ class CategoryControllerTest {
     public void testGetCategoriesByName() throws Exception {
 
         CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(ID1);
         categoryDTO.setName(FRUITS);
 
         when(categoryService.getCategoryByName(anyString())).thenReturn(categoryDTO);

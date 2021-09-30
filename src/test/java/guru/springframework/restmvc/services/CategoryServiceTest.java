@@ -65,7 +65,6 @@ class CategoryServiceTest {
 
         //then
         assertNotNull(categoryDTO);
-        assertEquals(ID, categoryDTO.getId());
         assertEquals(SWEETS, categoryDTO.getName());
 
         verify(categoryRepository, times(1)).findByName(anyString());

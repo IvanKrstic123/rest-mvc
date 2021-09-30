@@ -95,7 +95,6 @@ class VendorControllerTest extends AbstractRestControllerTest{
     @Test
     void createNewVendor() throws Exception {
         VendorDTO vendorDTO = new VendorDTO();
-        vendorDTO.setId(ID);
         vendorDTO.setName(MAXI);
         vendorDTO.setVendorUrl(VendorController.BASE_URL + ID);
 
@@ -113,7 +112,6 @@ class VendorControllerTest extends AbstractRestControllerTest{
     @Test
     void updateVendorByDTO() throws Exception {
         VendorDTO vendorDTO = new VendorDTO();
-        vendorDTO.setId(ID);
         vendorDTO.setName(MAXI);
         vendorDTO.setVendorUrl(VendorController.BASE_URL + ID);
 
@@ -130,7 +128,6 @@ class VendorControllerTest extends AbstractRestControllerTest{
     @Test
     void patchVendor() throws Exception {
         VendorDTO vendorDTO = new VendorDTO();
-        vendorDTO.setId(ID);
         vendorDTO.setName(MAXI);
         vendorDTO.setVendorUrl(VendorController.BASE_URL + ID);
 

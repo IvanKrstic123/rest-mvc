@@ -65,7 +65,7 @@ class CustomerServiceTest {
         CustomerDTO customerById = customerService.getCustomerById(2L);
 
         //then
-        assertEquals(ID, customerById.getId());
+        assertNotNull(customerById);
         assertEquals(FIRST_NAME, customerById.getFirstname());
         assertEquals(LAST_NAME, customerById.getLastname());
     }
@@ -89,7 +89,7 @@ class CustomerServiceTest {
         CustomerDTO newCustomer = customerService.createNewCustomer(customerDTO);
 
         //then
-        assertEquals(ID, newCustomer.getId());
+        assertNotNull(newCustomer);
         assertEquals(FIRST_NAME, newCustomer.getFirstname());
         assertEquals(LAST_NAME, newCustomer.getLastname());
         assertEquals(CustomerController.BASE_URL + "1", newCustomer.getCustomerUrl());
@@ -113,7 +113,7 @@ class CustomerServiceTest {
         CustomerDTO returnedDTO = customerService.updateCustomer(ID, customerDTO);
 
         //then
-        assertEquals(ID, returnedDTO.getId());
+        assertNotNull(returnedDTO);
         assertEquals(FIRST_NAME, returnedDTO.getFirstname());
         assertEquals(LAST_NAME, returnedDTO.getLastname());
         assertEquals(CustomerController.BASE_URL + "1", returnedDTO.getCustomerUrl());
@@ -138,7 +138,7 @@ class CustomerServiceTest {
         CustomerDTO returnedDTO = customerService.patchCustomer(ID, customerDTO);
 
         //then
-        assertEquals(ID, returnedDTO.getId());
+        assertNotNull(returnedDTO);
         assertEquals(FIRST_NAME, returnedDTO.getFirstname());
         assertEquals(LAST_NAME, returnedDTO.getLastname());
         assertEquals(CustomerController.BASE_URL + "1", returnedDTO.getCustomerUrl());

@@ -69,9 +69,9 @@ class VendorServiceTest {
         VendorDTO vendorById = vendorService.getVendorById(ID);
 
         //then
-        assertEquals(ID, vendorById.getId());
+        assertNotNull(vendorById);
         assertEquals(MAXI, vendor.getName());
-        assertEquals(VendorController.BASE_URL + vendorById.getId(), vendorById.getVendorUrl());
+        assertEquals(VendorController.BASE_URL + vendor.getId(), vendorById.getVendorUrl());
         verify(vendorRepository, times(1)).findById(anyLong());
     }
 
@@ -91,9 +91,9 @@ class VendorServiceTest {
         VendorDTO returnedDTO = vendorService.createNewVendor(vendorDTO);
 
         //then
+        assertNotNull(returnedDTO);
         assertEquals(vendorDTO.getName(), returnedDTO.getName());
-        assertEquals(vendor.getId(), returnedDTO.getId());
-        assertEquals(VendorController.BASE_URL + returnedDTO.getId(), returnedDTO.getVendorUrl());
+        assertEquals(VendorController.BASE_URL + vendor.getId(), returnedDTO.getVendorUrl());
         verify(vendorRepository, times(1)).save(any(Vendor.class));
     }
 
@@ -114,7 +114,7 @@ class VendorServiceTest {
 
         //then
         assertEquals(vendorDTO.getName(), returnDTO.getName());
-        assertEquals(VendorController.BASE_URL + returnDTO.getId(),  returnDTO.getVendorUrl());
+        assertEquals(VendorController.BASE_URL + vendor.getId(),  returnDTO.getVendorUrl());
         verify(vendorRepository, times(1)).save(any(Vendor.class));
     }
 
@@ -136,7 +136,7 @@ class VendorServiceTest {
 
         //then
         assertEquals(vendorDTO.getName(), returnDTO.getName());
-        assertEquals(VendorController.BASE_URL + returnDTO.getId(), returnDTO.getVendorUrl());
+        assertEquals(VendorController.BASE_URL + vendor.getId(), returnDTO.getVendorUrl());
         verify(vendorRepository, times(1)).save(any(Vendor.class));
     }
 

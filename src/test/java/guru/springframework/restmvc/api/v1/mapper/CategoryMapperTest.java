@@ -31,7 +31,6 @@ class CategoryMapperTest {
 
         //then
         assertNotNull(categoryDTO);
-        assertEquals(Long.valueOf(1), categoryDTO.getId());
         assertEquals("Sweets", categoryDTO.getName());
     }
 }
