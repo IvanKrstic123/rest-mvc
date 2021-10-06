@@ -66,6 +66,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.getAllCustomers()).thenReturn(customersList);
 
         mockMvc.perform(get(CustomerController.BASE_URL)
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customers", hasSize(2)));
@@ -80,6 +81,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.getCustomerById(anyLong())).thenReturn(customer);
 
         mockMvc.perform(get(CustomerController.BASE_URL + "3")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)));
@@ -105,6 +107,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.createNewCustomer(any(CustomerDTO.class))).thenReturn(customer);
 
         mockMvc.perform(post(CustomerController.BASE_URL)
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
@@ -123,6 +126,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.updateCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(customer);
 
         mockMvc.perform(put(CustomerController.BASE_URL + "1")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
@@ -142,6 +146,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.patchCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
         mockMvc.perform(patch(CustomerController.BASE_URL + "2")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(returnDTO)))
                 .andExpect(status().isOk())
