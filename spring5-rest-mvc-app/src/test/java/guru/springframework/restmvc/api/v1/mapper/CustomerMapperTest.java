@@ -1,6 +1,6 @@
 package guru.springframework.restmvc.api.v1.mapper;
 
-import guru.springframework.restmvc.api.v1.model.CustomerDTO;
+import guru.springframework.model.CustomerDTO;
 import guru.springframework.restmvc.domain.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

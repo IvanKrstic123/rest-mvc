@@ -1,7 +1,7 @@
 package guru.springframework.restmvc.services;
 
+import guru.springframework.model.CustomerDTO;
 import guru.springframework.restmvc.api.v1.mapper.CustomerMapper;
-import guru.springframework.restmvc.api.v1.model.CustomerDTO;
 import guru.springframework.restmvc.bootstrap.Bootstrap;
 import guru.springframework.restmvc.controllers.v1.CustomerController;
 import guru.springframework.restmvc.domain.Customer;

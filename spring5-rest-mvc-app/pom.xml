@@ -10,9 +10,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>guru.springframework</groupId>
     <artifactId>spring5-rest-mvc-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>guru.springframework</groupId>
+            <artifactId>rest-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

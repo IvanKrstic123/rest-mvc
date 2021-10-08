@@ -1,6 +1,6 @@
 package guru.springframework.restmvc.controllers.v1;
 
-import guru.springframework.restmvc.api.v1.model.CustomerDTO;
+import guru.springframework.model.CustomerDTO;
 import guru.springframework.restmvc.controllers.RestResponseEntityExceptionHandler;
 import guru.springframework.restmvc.services.CustomerService;
 import guru.springframework.restmvc.services.ResourceNotFoundException;
@@ -112,7 +112,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
-                .andExpect(jsonPath("$.customer_url ", equalTo(CustomerController.BASE_URL + "2")));
+                .andExpect(jsonPath("$.customerUrl ", equalTo(CustomerController.BASE_URL + "2")));
 
     }
 
@@ -132,7 +132,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
                 .andExpect(jsonPath("$.lastname", equalTo(LAST_NAME)))
-                .andExpect(jsonPath("$.customer_url ", equalTo(CustomerController.BASE_URL + "2")));
+                .andExpect(jsonPath("$.customerUrl ", equalTo(CustomerController.BASE_URL + "2")));
     }
 
     @Test
@@ -152,7 +152,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
                 .andExpect(jsonPath("$.lastname", equalTo(LAST_NAME)))
-                .andExpect(jsonPath("$.customer_url ", equalTo(CustomerController.BASE_URL + "2")));
+                .andExpect(jsonPath("$.customerUrl ", equalTo(CustomerController.BASE_URL + "2")));
     }
 
     @Test
